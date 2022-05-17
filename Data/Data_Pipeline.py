@@ -192,7 +192,23 @@ def drawbar_patient(dropped_windows_mark_df,windows_count_per_patient,patient,co
     plt.bar(windows_start_time,5,color=color_list[windows_start:windows_end])
     plt.show()
     
-
+def plot_windows_quality(color_windows,figure_size=10):
+    #show the whole windows quality
+    plt.figure(figsize=(figure_size, figure_size))
+    ax = plt.gca()
+    color_sqrt=int(len(color_windows)**0.5//1+1)
+    plt.xticks(np.arange(0,color_sqrt,10))
+    plt.yticks(np.arange(0,color_sqrt,10))
+    ax.grid()
+    for yaxis in range(color_sqrt):
+        for xaxis in range(color_sqrt):
+            state=[xaxis,yaxis]
+            index = state[0]+state[1]*color_sqrt
+            if(index>=len(color_windows)):
+                break
+            color= color_windows[index]
+            plt.plot(state[0]+1,state[1]+1, linewidth = '1', label = "end", color=color, linestyle=':', marker='s',markersize=6)
+    plt.show()
 
 def get_windows_count(df,windows_size):
     windows_count = (df.shape[0])/windows_size
