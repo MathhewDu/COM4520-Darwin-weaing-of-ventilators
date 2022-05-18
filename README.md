@@ -1,4 +1,4 @@
-# COM4520-Darwin-weaing-of-ventilators
+# Team Lima: weaing-of-ventilators
 
 Download original data from https://drive.google.com/file/d/1ZcWj0sgDppnHnvlNZ7j3DPnZoJn3OTnt/view?usp=sharing, and put it in the root directory of the repository
 
