@@ -1,6 +1,5 @@
 # Team Lima: weaing-of-ventilators
-
-Download original data from https://drive.google.com/file/d/1ZcWj0sgDppnHnvlNZ7j3DPnZoJn3OTnt/view?usp=sharing, and put it in the root directory of the repository
+The original data set is not allowed to be public, therefore only provided a sample data set called "sample_output_weaning_data_all_v4". Before use the models, motify dataset that followed the sample dataset's form.
 
 The folder Model contains the model and the Dataloader. The folder Data contains the data pre-process file.
 
