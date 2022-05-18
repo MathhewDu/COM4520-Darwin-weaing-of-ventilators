@@ -4,4 +4,6 @@ Download original data from https://drive.google.com/file/d/1ZcWj0sgDppnHnvlNZ7j
 
 The folder Model contains the model and the Dataloader. The folder Data contains the data pre-process file.
 
-Use the data_preprocess.ipynb to get processed dataset.
+Use the Data/data_preprocess.ipynb to get processed dataset(windows_df_360.csv and windows_df_360_last.csv).
+
+Move the two datasets generated to the Model folder, then run Model/Model.ipynb or Model/Model.py to run the system.
