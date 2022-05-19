@@ -84,9 +84,9 @@ def performance_score(y_pred,y_true,print_performance=True):
     return performance_mark
 
 # Define Classification Model
-class ClassificationlNet(nn.Module) : 
+class ClassificationNet(nn.Module) : 
     def __init__(self, input_size, hidden_size, num_classes) : 
-        super(ClassificationlNet, self).__init__()
+        super(ClassificationNet, self).__init__()
         self.fc1 = nn.Linear(input_size , hidden_size)
         self.fc2 = nn.Linear(hidden_size , 100)
         self.fc3 = nn.Linear(100 , num_classes)
@@ -153,8 +153,8 @@ def Classificationl_train(train_loader,test_loader,classification_optimizer,crit
     fig,ax = plt.subplots()
     plt.xlabel('Steps(Batch)')
     plt.ylabel('Loss')
-    plt.plot(test_epoch_loss,label="Loss for 1 hour LSTM model" )
-    plt.plot(record_epoch_loss,label="Loss for Transformer model")
+    plt.plot(test_epoch_loss,label="Loss on test set" )
+    plt.plot(record_epoch_loss,label="Loss on train set")
     plt.legend()
     plt.grid(True)
     plt.show()
@@ -260,7 +260,7 @@ if __name__ == "__main__":
     predict_period=classification_x_train.shape[1]
     input_size=predict_period*feature_num
     batch_size=200
-    classification_model = ClassificationlNet(input_size, hidden_size, num_classes).cuda()
+    classification_model = ClassificationNet(input_size, hidden_size, num_classes).cuda()
     criterionCE = nn.BCELoss().cuda()
     classification_optimizer = torch.optim.Adam(classification_model.parameters(), lr=0.0001)
     train_loader = DataLoader(classification_x_train,batch_size=batch_size,shuffle=True)
@@ -273,7 +273,10 @@ if __name__ == "__main__":
                                                                                                         classification_optimizer,
                                                                                                         criterionCE,
                                                                                                         classification_model,
-                                                                                                        print_performance=False)
+                                                                                                        print_performance=False,
+                                                                                                        batch_size=batch_size,
+                                                                                                        epochs=epochs,
+                                                                                                        )
 
 
     #Predict the next 30 mins data and then create the new predicted data set
@@ -284,7 +287,6 @@ if __name__ == "__main__":
 
     #get the performance of the whole model
     predict_loss_transformer = []
-    batch_size=30
     print("Performance score on test data set:")
     predict_accuracy_score,y_preds,y_trues,y_probs = practice_predict(predict_output,minutes=minutes)
     print("\nPerformance score on train data set:")
